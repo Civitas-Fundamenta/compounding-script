@@ -12,7 +12,7 @@ const staking = new web3.eth.Contract(abi, stakingAddress);
 const privateKey = 'EXAMPLE_PRIVATE_KEY';
 
 // Function run every 15 seconds
-const refreshIntervalId = setInterval(function() {
+const timer = setInterval(function() {
   compoundReward();
 }, 15 * 1000);
 
@@ -53,7 +53,7 @@ function compoundReward() {
           });
         });
         // If no errors, and all good, kill script after tx is mined by clearing our interval of 15 seconds
-        clearInterval(refreshIntervalId);
+        clearInterval(timer);
       } else {
         // Not Ready to have rewards compounded
         console.log('Not Ready to claim');
